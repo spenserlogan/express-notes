@@ -10,19 +10,13 @@ app.use(express.urlencoded({
 }));
 
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/notes.html")));
-
-app.get("*", (req, res) => {return res.sendFile(path.join(__dirname, "./public/index.html"))});
-
-//JSON.parse() Object.method() //JSON is a object library to handle json data
-//res.json() is part of node meaning to send a response back to the client (or server) that is in format json (this doesn't convert, it only tags it as we need to send it as json)
-// app.get("/api/notes", (req, res) => {
-//   let savedNote = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-//   console.log(savedNote)
-//   return res.json(savedNote)
-// })
+app.use(express.static('public'));
+app.get("/api/notes", (req, res) => {
+  let notes = fs.readFileSync("./db/db.json", "utf8")
+  let savedNote = JSON.parse(notes);
+  console.log(savedNote)
+  return res.json(savedNote)
+})
 
 
 app.post("/api/notes", (req, res) => {
@@ -37,6 +31,13 @@ app.post("/api/notes", (req, res) => {
   fs.writeFileSync("./db/db.json", JSON.stringify(savedNote));
   return res.json(savedNote);
 })
+app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/notes.html")));
+
+app.get("*", (req, res) => {return res.sendFile(path.join(__dirname, "./public/index.html"))});
+
+//JSON.parse() Object.method() //JSON is a object library to handle json data
+//res.json() is part of node meaning to send a response back to the client (or server) that is in format json (this doesn't convert, it only tags it as we need to send it as json)
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on: http://localhost:${PORT}`);
