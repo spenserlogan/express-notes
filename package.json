@@ -1,0 +1,26 @@
+{
+  "name": "express-notes",
+  "version": "1.0.0",
+  "description": "## Introduction This note taking app is used to allow the user take notes of the fly and keep them saved in a database.",
+  "main": "api.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spenserlogan/express-notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spenserlogan/express-notes/issues"
+  },
+  "homepage": "https://github.com/spenserlogan/express-notes#readme"
+}
